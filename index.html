@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Clash | Real-Time Multiplayer Lobby</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="lobby-page">
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="logo-wrap">
+      <div class="logo-badge">W</div>
+      <div class="logo-title">WORD CLASH</div>
+    </div>
+    <div class="player-status-badge">
+      <div class="online-dot"></div>
+      <span id="header-status">Live Lobby</span>
+    </div>
+  </header>
+
+  <!-- Main Lobby Container -->
+  <main class="lobby-container glass-panel">
+    
+    <div class="lobby-hero">
+      <h1>Word Clash Arena</h1>
+      <p>Test your vocabulary speed against other players in real-time!</p>
+    </div>
+
+    <!-- Step 1: Join Form (Visible if player hasn't joined) -->
+    <div id="join-section" class="join-form">
+      <div class="input-group">
+        <label for="player-name-input" class="input-label">Enter Your Player Name</label>
+        <input 
+          type="text" 
+          id="player-name-input" 
+          class="text-input" 
+          placeholder="e.g. Alex, Maya, Thunder..." 
+          maxlength="16"
+          autocomplete="off"
+        >
+      </div>
+      <button id="btn-join" class="btn-primary">
+        <span>Join Game Lobby</span>
+        <span>➔</span>
+      </button>
+      <div id="join-error-msg" style="color: #f87171; font-size: 0.9rem; text-align: center; display: none;"></div>
+    </div>
+
+    <!-- Step 2: Joined Lobby Area (Visible once player is in) -->
+    <div id="in-lobby-section" style="display: none; flex-direction: column; gap: 24px;">
+      
+      <!-- Host Controls Panel (Shown only to Host) -->
+      <div id="host-controls" class="host-controls-panel" style="display: none;">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <h3 style="font-size: 1.1rem; color: #fbbf24; font-weight: 800;">👑 Host Dashboard</h3>
+          <span style="font-size: 0.8rem; background: rgba(251,191,36,0.2); color: #fbbf24; padding: 2px 8px; border-radius: 4px; font-weight: 700;">You are Host</span>
+        </div>
+
+        <div class="rounds-selector">
+          <label class="input-label">Select Number of Rounds:</label>
+          <div class="rounds-options">
+            <label class="round-radio-card active" id="card-rounds-5">
+              <input type="radio" name="totalRounds" value="5" checked>
+              <span>5 Rounds (Fast)</span>
+            </label>
+            <label class="round-radio-card" id="card-rounds-10">
+              <input type="radio" name="totalRounds" value="10">
+              <span>10 Rounds (Full)</span>
+            </label>
+          </div>
+        </div>
+
+        <button id="btn-start-game" class="btn-primary btn-start-game">
+          <span>🚀 Start Game for Everyone</span>
+        </button>
+      </div>
+
+      <!-- Non-Host Waiting Message -->
+      <div id="non-host-waiting" class="waiting-message" style="display: none;">
+        <div class="pulse-spinner"></div>
+        <span>Waiting for host to start the game...</span>
+      </div>
+
+      <!-- Live Players List -->
+      <div class="players-section">
+        <div class="section-header">
+          <div class="section-title">
+            <span>Joined Players</span>
+            <span id="player-count" class="player-count-pill">0</span>
+          </div>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">Real-time Sync</span>
+        </div>
+
+        <div id="players-list-grid" class="players-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script type="module" src="js/lobby.js"></script>
+</body>
+</html>
